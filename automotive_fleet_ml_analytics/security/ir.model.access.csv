@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_fleet_ml_analytics_user,fleet.ml.analytics.user,model_fleet_ml_analytics,base.group_user,1,1,1,0
+access_ml_prediction_user,ml.prediction.user,model_ml_prediction,base.group_user,1,0,0,0
+access_ml_prediction_manager,ml.prediction.manager,model_ml_prediction,fleet.fleet_group_manager,1,1,1,1
