@@ -21,17 +21,17 @@ class FleetMLController(http.Controller):
         """
         # Extract vehicle_id from request payload
         vehicle_id = kwargs.get('vehicle_id')
-        
+
         # Validate vehicle exists before processing
         if vehicle_id:
             vehicle = request.env['fleet.vehicle'].browse(vehicle_id)
             if not vehicle.exists():
                 return {'status': 'error', 'message': 'Vehicle not found'}
-        
+
         # TODO: Replace with actual ML model inference logic
         # Currently returns mock prediction score for testing
         prediction_score = 0.95
-        
+
         # Return structured response with prediction results
         return {
             'status': 'success',
