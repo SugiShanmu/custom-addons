@@ -24,18 +24,17 @@
     ],
     'data': [
         'security/ir.model.access.csv',
-        'views/fleet_vehicle_views.xml',
+        'security/security.xml',
+        'views/ml_prediction_views.xml',
+        'views/menu_views.xml',
+        'data/cron_data.xml',
         'views/ml_dashboard_views.xml',
-        'views/menu.xml',
     ],
     'assets': {
         'web.assets_backend': [
             'automotive_fleet_ml_analytics/static/src/js/dashboard.js',
             'automotive_fleet_ml_analytics/static/src/css/dashboard.css'
         ],
-    },
-    'external_dependencies': {
-        'python': ['pandas', 'scikit-learn', 'numpy', 'joblib'],
     },
     'installable': True,
     'application': True,
