@@ -1,1 +1,1 @@
-from .import ml_predict
+from .import ml_service
