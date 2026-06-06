@@ -137,3 +137,14 @@ class FleetVehicle(models.Model):
             except Exception as e:
                 _logger.error(f"ML Cron failed for vehicle {vehicle.name}: {e}")
         _logger.info(f"ML: Daily Fuel Prediction Cron Completed for {len(vehicles)} vehicles")
+
+    @api.model
+    def action_cron_predict_health_all(self):
+        """Cron: Weekly health prediction for all vehicles"""
+        vehicles = self.search([])
+        for vehicle in vehicles:
+            try:
+                self.env['ml.service'].predict_vehicle_health(vehicle.id)
+            except Exception as e:
+                _logger.error(f"ML Health Cron failed for vehicle {vehicle.name}: {e}")
+        _logger.info(f"ML: Weekly Health Prediction Cron Completed for {len(vehicles)} vehicles")
