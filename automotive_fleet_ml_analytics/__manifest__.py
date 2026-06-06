@@ -7,7 +7,7 @@
         Automotive Fleet Management with Machine Learning
         =================================================
         * Predict fuel costs using vehicle history data
-        * Forecast maintenance schedules using ML algorithms  
+        * Forecast maintenance schedules using ML algorithms
         * Real-time analytics dashboard for fleet managers
         * Integration with GPS tracking and IoT sensors
     """,
