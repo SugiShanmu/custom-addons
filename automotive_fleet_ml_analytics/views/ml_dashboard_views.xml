@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 1. GRAPH VIEW - Health Score Chart -->
+        <record id="view_ml_prediction_graph" model="ir.ui.view">
+            <field name="name">ml.prediction.graph</field>
+            <field name="model">ml.prediction</field>
+            <field name="arch" type="xml">
+                <graph string="ML Predictions Analytics" type="bar" stacked="True">
+                    <field name="vehicle_id" type="row"/>
+                    <field name="predicted_value" type="measure"/>
+                    <field name="prediction_type" type="col"/>
+                </graph>
+            </field>
+        </record>
+
+        <!-- 2. PIVOT VIEW - Data analysis  -->
+        <record id="view_ml_prediction_pivot" model="ir.ui.view">
+            <field name="name">ml.prediction.pivot</field>
+            <field name="model">ml.prediction</field>
+            <field name="arch" type="xml">
+                <pivot string="ML Predictions Pivot" display_quantity="true">
+                    <field name="vehicle_id" type="row"/>
+                    <field name="prediction_type" type="col"/>
+                    <field name="predicted_value" type="measure"/>
+                    <field name="confidence_score" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <!-- 3. DASHBOARD ACTION - Menu connect -->
+        <record id="action_ml_dashboard" model="ir.actions.act_window">
+            <field name="name">ML Dashboard</field>
+            <field name="res_model">ml.prediction</field>
+            <field name="view_mode">graph,pivot,tree</field>
+            <field name="context">{
+                'search_default_filter_health': 1,
+                'graph_measure': 'predicted_value',
+                'graph_groupby': 'vehicle_id'
+            }</field>
+        </record>
+    </data>
+</odoo>
