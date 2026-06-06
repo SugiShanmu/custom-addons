@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields
+
+
 class FleetMLAnalytics(models.Model):
     """Model to store ML Analytics predictions for fleet vehicles."""
     _name = 'automotive.fleet.ml.analytics'
