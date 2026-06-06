@@ -1,6 +1,9 @@
 from odoo import models, fields, api
 from datetime import datetime
+from logging 
 
+
+_logger = logging.getLogger(__name__)
 class MLPrediction(models.Model):
     _name = 'ml.prediction'
     _description = 'ML Predictions for Fleet Vehicles'
@@ -36,6 +39,65 @@ class MLPrediction(models.Model):
         help="ML model oda output value"
     )
     
+class FleetVehicle(models.Model):
+    _inherit = 'fleet.vehicle'
+    _description = 'Fleet Vehicle ML Extensions'
+
+    def action_predict_fuel(self):
+        """Predict Fuel button action in vehicle form"""
+        self.ensure_one()
+        result = self.env['ml.service'].predict_fuel_consumption(self.id)
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Fuel Prediction Success',
+                'message': f"Predicted Mileage: {result['predicted_mileage']} km/l\nConfidence: {result['confidence']*100:.0f}%",
+                'type': 'success',
+                'sticky': False,
+            }
+        }
+
+    def action_predict_maintenance(self):
+        """Predict Maintenance button action in vehicle form"""
+        self.ensure_one()
+        result = self.env['ml.service'].predict_maintenance_days(self.id)
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Maintenance Prediction',
+                'message': f"Next Service in: {result['predicted_days']} days\nConfidence: {result['confidence']*100:.0f}%",
+                'type': 'success',
+                'sticky': False,
+            }
+        }
+
+    def action_predict_health(self):
+        """Predict Health button action in vehicle form"""
+        self.ensure_one()
+        result = self.env['ml.service'].predict_vehicle_health(self.id)
+        return {
+            'type': 'ir.actions.client',
+            'tag': 'display_notification',
+            'params': {
+                'title': 'Health Prediction',
+                'message': f"Vehicle Health Score: {result['predicted_health']}/100\nConfidence: {result['confidence']*100:.0f}%",
+                'type': 'success',
+                'sticky': False,
+            }
+        }
+
+    @api.model
+    def action_cron_predict_fuel_all(self):
+        """Cron: Daily fuel prediction for all vehicles"""
+        vehicles = self.search([])
+        for vehicle in vehicles:
+            try:
+                self.env['ml.service'].predict_fuel_consumption(vehicle.id)
+            except Exception as e:
+                _logger.error(f"ML Cron failed for vehicle {vehicle.name}: {e}")
+        _logger.info(f"ML: Daily Fuel Prediction Cron Completed for {len(vehicles)} vehicles")
     actual_value = fields.Float(
         string='Actual Value', 
         digits=(16, 2),
