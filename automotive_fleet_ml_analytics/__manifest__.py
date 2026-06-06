@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Automotive Fleet ML Analytics',
-    'version': '16.0.1.0.0',  # ← 16 ah maathiten
+    'version': '16.0.1.0.0',
     'category': 'Fleet',
     'summary': 'ML-powered Fuel Cost & Maintenance Prediction with Accounting Integration',
     'description': """
         Automotive Fleet Management with Machine Learning
-
         * Predict fuel costs using vehicle history data
         * Forecast maintenance schedules using ML algorithms
         * Real-time analytics dashboard for fleet managers
@@ -20,8 +19,8 @@
         'fleet',
         'maintenance',
         'mail',
-        'automotive_fleet_accounting',  # Accounting module
-        'web',  # Dashboard ku
+        'automotive_fleet_accounting',
+        'web',
     ],
     'data': [
         'security/ir.model.access.csv',
