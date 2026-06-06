@@ -2,6 +2,7 @@
 from odoo import http
 from odoo.http import request
 
+
 class FleetMLController(http.Controller):
     """Controller for handling Fleet ML Analytics API endpoints."""
 
@@ -9,13 +10,10 @@ class FleetMLController(http.Controller):
     def ml_predict(self, **kwargs):
         """
         Generate ML prediction scores for fleet vehicles.
-        
         Accepts vehicle_id as JSON parameter and returns prediction data.
         Requires authenticated user session.
-        
         Args:
-            **kwargs: Request parameters containing vehicle_id
-            
+            **kwargs: Request parameters containing vehicle_id   
         Returns:
             dict: Prediction response with status, score, and vehicle_id
         """
