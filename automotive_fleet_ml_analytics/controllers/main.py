@@ -13,7 +13,7 @@ class FleetMLController(http.Controller):
         Accepts vehicle_id as JSON parameter and returns prediction data.
         Requires authenticated user session.
         Args:
-        **kwargs: Request parameters containing vehicle_id   
+        **kwargs: Request parameters containing vehicle_id
         Returns:
             dict: Prediction response with status, score, and vehicle_id
         """
