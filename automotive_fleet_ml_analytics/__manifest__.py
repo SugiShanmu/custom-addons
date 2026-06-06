@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 {
     'name': 'Automotive Fleet ML Analytics',
-    'version': '16.0.1.0.0',
+    'version': '18.0.1.0.0',
     'category': 'Fleet',
     'summary': 'ML-powered Fuel Cost & Maintenance Prediction with Accounting Integration',
     'description': """
