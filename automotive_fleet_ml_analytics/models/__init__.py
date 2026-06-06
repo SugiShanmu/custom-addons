@@ -1,1 +1,2 @@
-from . import fleet_ml_analytics
+# -*- coding: utf-8 -*-
+from . import fleet_ml_analytics  # noqa: F401
