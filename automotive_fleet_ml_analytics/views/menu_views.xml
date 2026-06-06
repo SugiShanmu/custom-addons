@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- 1. MAIN MENU - Top la "ML Analytics" varum -->
+        <menuitem id="menu_ml_analytics_root" 
+                  name="ML Analytics" 
+                  sequence="50"
+                  web_icon="automotive_fleet_ml_analytics,static/description/icon.png"/>
+
+        <!-- 2. SUB MENU 1 - Predictions History -->
+        <menuitem id="menu_ml_predictions" 
+                  name="Predictions History"
+                  parent="menu_ml_analytics_root"
+                  action="action_ml_prediction"
+                  sequence="10"/>
+
+        <!-- 3. SUB MENU 2 - ML Dashboard -->
+        <menuitem id="menu_ml_dashboard" 
+                  name="Dashboard"
+                  parent="menu_ml_analytics_root"
+                  action="action_ml_dashboard"
+                  sequence="5"/>
+
+        <!-- 4. ADD BUTTON IN FLEET VEHICLE FORM -->
+        <record id="view_fleet_vehicle_form_inherit_ml" model="ir.ui.view">
+            <field name="name">fleet.vehicle.form.inherit.ml</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="action_predict_fuel" string="Predict Fuel" type="object" 
+                            class="btn-primary" icon="fa-tachometer"/>
+                    <button name="action_predict_maintenance" string="Predict Maintenance" type="object" 
+                            class="btn-secondary" icon="fa-wrench"/>
+                    <button name="action_predict_health" string="Predict Health" type="object" 
+                            class="btn-info" icon="fa-heartbeat"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
