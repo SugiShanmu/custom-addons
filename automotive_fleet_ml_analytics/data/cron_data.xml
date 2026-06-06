@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- CRON 1: Daily Fuel Prediction for All Vehicles -->
+        <record id="ir_cron_ml_predict_fuel_daily" model="ir.cron">
+            <field name="name">ML: Daily Fuel Prediction</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+            <field name="state">code</field>
+            <field name="code">model.action_cron_predict_fuel_all()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="False"/>  <!-- v1.0 la off la vachurukom -->
+            <field name="doall" eval="False"/>
+        </record>
+
+        <!-- CRON 2: Weekly Health Check for All Vehicles -->
+        <record id="ir_cron_ml_predict_health_weekly" model="ir.cron">
+            <field name="name">ML: Weekly Health Prediction</field>
+            <field name="model_id" ref="fleet.model_fleet_vehicle"/>
+            <field name="state">code</field>
+            <field name="code">model.action_cron_predict_health_all()</field>
+            <field name="interval_number">7</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="active" eval="False"/>  <!-- v1.0 la off la vachurukom -->
+            <field name="doall" eval="False"/>
+        </record>
+    </data>
+</odoo>
