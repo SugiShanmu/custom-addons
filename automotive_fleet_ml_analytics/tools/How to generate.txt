@@ -1,0 +1,97 @@
+
+ODOO INTERACTIVE UI GENERATOR - COMPLETE STEPS
+
+
+FILE: tools/generate_views.py
+PURPOSE: Interactive menu to select views, wizard, action, menu
+OUTPUT: Generated/ folder
+VERSION: 3.0 - INTERACTIVE
+
+STEP 1: SETUP
+
+
+cd your_addon/
+# Save generate_views.py to tools/ folder
+
+STEP 2: RUN INTERACTIVE SCRIPT
+
+
+python tools/generate_views.py
+
+STEP 3: SELECT OPTIONS IN MENU
+
+
+Script will ask:
+
+📁 Enter model file path [models/ml_prediction.py]:
+   → Enter your model path or press Enter for default
+
+1️⃣ VIEWS:
+   Generate FORM VIEW? [Y/n]:
+   Generate TREE VIEW? [Y/n]:
+   Generate KANBAN VIEW? [y/N]:
+   Generate SEARCH VIEW? [Y/n]:
+
+   → Press Y for yes, N for no, or Enter for default
+
+2️⃣ ADVANCED:
+   Generate WIZARD? [y/N]:
+   Generate ACTION? [Y/n]:
+   Generate MENU ITEM? [Y/n]:
+
+   → Select what you need
+
+3️⃣ MENU CONFIGURATION (if menu selected):
+   Parent Menu [Leave empty for top level]:
+   Menu Sequence [Default: 10]:
+
+   → Enter parent menu XML ID or leave empty for top level
+   → Enter sequence number or press Enter for 10
+
+4️⃣ FORM LAYOUT:
+   1. Three-Way Grouping (Required → Optional → Computed)
+   2. Simple Grouping (All fields together)
+   Select layout [1]:
+
+   → Choose 1 or 2
+
+STEP 4: REVIEW & MOVE
+
+
+XML will be in: Generated/model_name_views.xml
+
+1. Review: cat Generated/ml_prediction_views.xml
+2. Move: mv Generated/*.xml views/
+3. Update __manifest__.py data section
+4. Upgrade: odoo -u your_addon
+
+FEATURES
+
+
+✅ Interactive selection - Generate only what you need
+✅ Wizard support - Auto generates wizard form
+✅ Menu parent - Specify parent menu
+✅ Sequence control - Set menu sequence
+✅ Layout choice - Three-way or Simple grouping
+✅ Smart defaults - Common options pre-selected
+✅ Summary output - Shows what was generated
+
+EXAMPLE USE CASES
+
+
+USE CASE 1: Full UI with Wizard
+   FORM: Y, TREE: Y, KANBAN: N, SEARCH: Y
+   WIZARD: Y, ACTION: Y, MENU: Y
+   → Gets everything + wizard
+
+USE CASE 2: Simple List Only
+   FORM: Y, TREE: Y, KANBAN: N, SEARCH: N
+   WIZARD: N, ACTION: Y, MENU: Y
+   → Just form + tree + menu
+
+USE CASE 3: Kanban Dashboard
+   FORM: Y, TREE: N, KANBAN: Y, SEARCH: Y
+   WIZARD: N, ACTION: Y, MENU: Y
+   → Kanban focused view
+
+END OF FILE
